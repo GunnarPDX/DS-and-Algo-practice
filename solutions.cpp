@@ -129,3 +129,64 @@ public:
         return head;
     }
 };
+
+class Solution9 {
+public:
+    int romanToInt(string s){
+        int size = s.size() + 1;
+        char numeral[size];
+        strcpy(numeral, s.c_str());
+
+        int sum = 0;
+
+        for(int i = 0; i < size - 1; i++){
+            sum += handleSubtractions(numeral, i);
+        }
+
+        return sum;
+    }
+
+    int getNumeralValue(char value){
+        switch(value) {
+            case 'I':
+                return 1;
+                break;
+            case 'V':
+                return 5;
+                break;
+            case 'X':
+                return 10;
+                break;
+            case 'L':
+                return 50;
+                break;
+            case 'C':
+                return 100;
+                break;
+            case 'D':
+                return 500;
+                break;
+            case 'M':
+                return 1000;
+                break;
+            default:
+                return 0;
+
+        }
+    }
+
+    int handleSubtractions(char * numeral, int i){
+        if(numeral[i + 1] == NULL) return getNumeralValue(numeral[i]);
+        if(numeral[i] == 'I' && (numeral[i + 1] == 'V' || numeral[i + 1] == 'X')){
+            return -1;
+        }
+        if(numeral[i] == 'X' && (numeral[i + 1] == 'L' || numeral[i + 1] == 'C')){
+            return -10;
+        }
+        if(numeral[i] == 'C' && (numeral[i + 1] == 'D' || numeral[i + 1] == 'M')){
+            return -100;
+        }
+        else return getNumeralValue(numeral[i]);
+    }
+
+};
