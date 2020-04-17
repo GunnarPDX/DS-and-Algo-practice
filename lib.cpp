@@ -118,3 +118,14 @@ public:
     }
 };
 
+class Solution8 {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if(!head) return NULL;
+        if(head->val == val) {
+            head = head->next;
+            if(head) head = removeElements(head, val);
+        }else if(head && head->next) head->next = removeElements(head->next, val);
+        return head;
+    }
+};
