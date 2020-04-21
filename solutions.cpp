@@ -224,3 +224,20 @@ public:
         else return NULL;
     }
 };
+
+class Solution11 {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        for(int i = 0; i != nums.size(); ++i) {
+            cout << '['<< nums[i] << '] ';
+            for(int i2 = 0; i2 != nums.size(); ++i2) {
+                if ((i != i2) && (nums[i] + nums[i2] == target)){
+                    vector<int> vect{ nums[i], nums[i2]};
+                    return vect;
+                }
+            }
+        }
+        vector<int> vect{ 0, 0};
+        return vect;
+    }
+};
