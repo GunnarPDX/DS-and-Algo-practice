@@ -257,3 +257,35 @@ public:
         }
     }
 };
+
+class Solution13 {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        for(int i = 0; i < nums.size(); i++){
+            if(i < (nums.size() - 1)){
+                if(nums[i] == nums[i + 1]){
+                    nums.erase(nums.begin() + i);
+                    i--;
+                }
+            }
+        }
+        return nums.size();
+    }
+};
+
+class Solution14 {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int length = nums.size();
+        for(int i = 0; i < length; ++i){
+            if(nums[i] == val){
+                auto it = nums.begin() + i;
+                *it = std::move(nums.back());
+                nums.pop_back();
+                --length;
+                --i;
+            }
+        }
+        return length;
+    }
+};
