@@ -190,3 +190,37 @@ public:
     }
 
 };
+
+class Solution10 {
+public:
+    bool isValid(string s) {
+        vector<char> v;
+        int length = s.length();
+
+        for(int i = 0; i < length; i++){
+
+            if(isOpen(s[i])){
+                v.push_back(s[i]);
+            }
+            else{
+                if(v.empty()) return false;
+                else if(getInverse(v.back()) != s[i]) return false;
+                else v.pop_back();
+            }
+        }
+
+        return v.empty();
+    }
+
+    bool isOpen(char i){
+        if(i == '[' || i == '{' || i == '(') return true;
+        else return false;
+    }
+
+    char getInverse(char i){
+        if(i == '[') return ']';
+        else if(i == '{') return '}';
+        else if(i == '(') return ')';
+        else return NULL;
+    }
+};
