@@ -289,3 +289,22 @@ public:
         return length;
     }
 };
+
+class Solution15 {
+public:
+    int strStr(string haystack, string needle) {
+        if(needle.empty() || needle == "" || haystack == needle) return 0;
+
+        const int HAYSTACK_SIZE = haystack.size();
+        const int NEEDLE_SIZE = needle.size();
+
+        if(NEEDLE_SIZE >= HAYSTACK_SIZE) return -1;
+
+        const int DIFFERENCE = HAYSTACK_SIZE - NEEDLE_SIZE;
+
+        for(int i = 0; i <= DIFFERENCE; ++i){
+            if(!strncmp(&haystack[i], needle.c_str(), NEEDLE_SIZE)) return i;
+        }
+        return -1;
+    }
+};
