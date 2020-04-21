@@ -241,3 +241,19 @@ public:
         return vect;
     }
 };
+
+class Solution12 {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if(!l1 && !l2) return NULL;
+        if(!l2 || (l1 && l1->val < l2->val)){
+            ListNode * node = new ListNode(l1->val);
+            node->next = mergeTwoLists(l1->next, l2);
+            return node;
+        } else {
+            ListNode * node = new ListNode(l2->val);
+            node->next = mergeTwoLists(l1, l2->next);
+            return node;
+        }
+    }
+};
